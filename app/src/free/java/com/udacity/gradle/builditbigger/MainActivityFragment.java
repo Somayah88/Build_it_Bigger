@@ -1,5 +1,4 @@
 package com.udacity.gradle.builditbigger;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.fragment_main_activity, container, false);
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to

@@ -14,6 +14,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
+
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 16
@@ -31,10 +32,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "tier"
+
+    productFlavors {
+        free {
+            applicationId 'com.udacity.gradle.builditbigger.free'
+            dimension "tier"
+
+        }
+        paid {
+            applicationId 'com.udacity.gradle.builditbigger.paid'
+            dimension "tier"
+
+        }
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:support-v4:27.1.1'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.google.android.gms:play-services-ads:15.0.1'
@@ -44,14 +61,18 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation project(':jokesLibrary')
-    implementation project (':androidjokeslibrary')
+    implementation project(':androidjokeslibrary')
 
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation 'org.hamcrest:hamcrest-library:1.3'
+
+
 }
+
 
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
@@ -60,6 +81,11 @@ configurations.all {
             if (!requested.name.startsWith("multidex")) {
                 details.useVersion '27.1.1'
             }
+        }
+    }
+    configurations {
+        all {
+            exclude module: 'httpclient'
         }
     }
 }
