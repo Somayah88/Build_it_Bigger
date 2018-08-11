@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -13,6 +15,8 @@ import com.google.android.gms.ads.AdView;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+    ProgressBar progressIndicator;
+    Button getJokeButton;
 
     public MainActivityFragment() {
     }
@@ -21,6 +25,18 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main_activity, container, false);
+         getJokeButton=root.findViewById(R.id.get_joke_btn);
+         progressIndicator= root.findViewById(R.id.progress_indicator);
+
+        getJokeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressIndicator.setVisibility(View.VISIBLE);
+                tellJoke();
+
+            }
+        });
+
 
         AdView mAdView = (AdView) root.findViewById(R.id.adView);
         // Create an ad request. Check logcat output for the hashed device ID to
@@ -30,6 +46,15 @@ public class MainActivityFragment extends Fragment {
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
         mAdView.loadAd(adRequest);
+        progressIndicator.setVisibility(View.GONE);
+
         return root;
+    }
+
+    public void tellJoke() {
+
+        new EndpointsAsyncTask().execute(this);
+
+
     }
 }
