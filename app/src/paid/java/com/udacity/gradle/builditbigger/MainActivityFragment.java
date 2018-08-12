@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +14,14 @@ import android.widget.ProgressBar;
  */
 public class MainActivityFragment extends Fragment {
     ProgressBar progressIndicator;
-    Button getJokeButton;
+    private Button getJokeButton;
 
 
     public MainActivityFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main_activity, container, false);
         getJokeButton = root.findViewById(R.id.get_joke_btn);
@@ -41,7 +42,7 @@ public class MainActivityFragment extends Fragment {
         return root;
     }
 
-    public void tellJoke() {
+    private void tellJoke() {
 
         new EndpointsAsyncTask().execute(this);
 

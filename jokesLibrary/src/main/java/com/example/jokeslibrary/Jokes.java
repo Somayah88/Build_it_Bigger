@@ -6,8 +6,8 @@ import java.util.Random;
 public class Jokes {
 
 
-    ArrayList<String> jokes;
-    Random random;
+    private final ArrayList<String> jokes;
+    private final Random random;
 
     public Jokes() {
         jokes = new ArrayList<>();

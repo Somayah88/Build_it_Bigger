@@ -38,16 +38,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //public void tellJoke(View view) {
-       /* Jokes joke=new Jokes();
-        String jokeString=joke.tellAJoke();
-       Intent intent =new Intent(this, JokeDisplay.class);
-        intent.putExtra(JokeDisplay.JOKE_KEY,jokeString);
-        startActivity(intent);*/
-        //Toast.makeText(this, joke.tellAJoke(), Toast.LENGTH_SHORT).show();
-    //  new EndpointsAsyncTask().execute(this);
-
-    //}
 
 
 }
