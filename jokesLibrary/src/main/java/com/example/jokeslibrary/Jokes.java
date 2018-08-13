@@ -3,7 +3,7 @@ package com.example.jokeslibrary;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Jokes {
+public final class Jokes {
 
 
     private final ArrayList<String> jokes;

@@ -12,11 +12,17 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherInterstitialAd;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class MainActivityFragment extends Fragment {
+    @BindView(R.id.progress_indicator)
     ProgressBar progressIndicator;
-    private Button getJokeButton;
+    @BindView(R.id.get_joke_btn)
+    Button getJokeButton;
+    @BindView(R.id.adView)
+    AdView mAdView;
     private PublisherInterstitialAd mPublisherInterstitialAd=null;
 
 
@@ -27,8 +33,7 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main_activity, container, false);
-         getJokeButton=root.findViewById(R.id.get_joke_btn);
-         progressIndicator= root.findViewById(R.id.progress_indicator);
+        ButterKnife.bind(this,root);
          getJokeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +65,6 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
-        AdView mAdView = (AdView) root.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
                 .build();
